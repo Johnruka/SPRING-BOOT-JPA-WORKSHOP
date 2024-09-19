@@ -30,8 +30,7 @@ public class AppUser {
     @Setter
     private String password;
     @Column(nullable = false, length = 100)
-    @Setter
-    private Details userDetails;
+
 
 
     private LocalDateTime regDate;
@@ -40,7 +39,7 @@ public class AppUser {
     @Setter
     @OneToOne
     @JoinColumn(name = "details_id")
-    private Details details;
+    private AppUser details;
 
     public AppUser(String firstName, String lastName, String email) {
         this.username = username;

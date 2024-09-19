@@ -1,13 +1,19 @@
 package se.lexicon.springbootjpaworkshop1.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
+@Entity
 public class Details {
 
     @Id
@@ -22,7 +28,7 @@ public class Details {
     public Details(String email, String name) {
         this.email = email;
         this.name = name;
-        this.birthDate =
+
 
     }
 }
