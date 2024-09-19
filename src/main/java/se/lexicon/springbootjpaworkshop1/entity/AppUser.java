@@ -32,14 +32,13 @@ public class AppUser {
     @Column(nullable = false, length = 100)
 
 
-
     private LocalDateTime regDate;
 
 
     @Setter
     @OneToOne
     @JoinColumn(name = "details_id")
-    private AppUser details;
+    private Details details;
 
     public AppUser(String firstName, String lastName, String email) {
         this.username = username;
