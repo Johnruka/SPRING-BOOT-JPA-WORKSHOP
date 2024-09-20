@@ -18,6 +18,8 @@ public interface AppUserRepository extends CrudRepository<AppUser, String> {
 
     Optional<AppUser> findByEmailIgonreCase(String email);
 
+    Optional<AppUser> findByUsernameAndPassword(String username, String password);
+
 }
 
 
