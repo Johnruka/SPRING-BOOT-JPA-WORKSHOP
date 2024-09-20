@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,15 +20,21 @@ public class Details {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false)
+
+    @Column(unique = true, nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String name;
-    private LocalDateTime birthDate;
+
+    @Setter
+    @Column(nullable = false)
+    private LocalDate birthDate;
 
     public Details(String email, String name) {
         this.email = email;
         this.name = name;
+        this.birthDate = getBirthDate();
 
 
     }
