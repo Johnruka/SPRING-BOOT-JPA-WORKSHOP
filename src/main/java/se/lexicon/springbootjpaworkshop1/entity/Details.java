@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -34,7 +36,7 @@ public class Details {
     public Details(String email, String name) {
         this.email = email;
         this.name = name;
-        this.birthDate = getBirthDate();
+        this.birthDate = birthDate;
 
 
     }

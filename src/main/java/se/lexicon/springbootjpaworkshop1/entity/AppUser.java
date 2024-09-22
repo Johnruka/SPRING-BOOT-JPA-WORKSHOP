@@ -3,6 +3,7 @@ package se.lexicon.springbootjpaworkshop1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -27,7 +28,7 @@ public class AppUser {
     private String password;
 
     @Column(nullable = false, length = 100)
-    private LocalDateTime regDate;
+    private LocalDate regDate;
 
 
     @Setter
@@ -35,9 +36,10 @@ public class AppUser {
     @JoinColumn(name = "details_id")
     private Details userdetails;
 
-    public AppUser(String firstName, String lastName, String email) {
+    public AppUser(String firstName, String lastName, String email, Details userdetails) {
         this.username = username;
         this.password = password;
-        this.regDate = LocalDateTime.now();
+        this.regDate = regDate;
+        this.userdetails = userdetails;
     }
 }
