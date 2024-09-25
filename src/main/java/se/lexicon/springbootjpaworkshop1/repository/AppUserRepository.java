@@ -13,7 +13,7 @@ public interface AppUserRepository extends CrudRepository<AppUser, String> {
 
     Optional<AppUser> findByUsername(String username);
 
-    Optional<List<AppUser>> findBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+   // Optional<List<AppUser>> findBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
     Optional<AppUser> findById(int detailsId);
 
