@@ -10,7 +10,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,28 +21,43 @@ public class BookLoan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
-    private int id;
+    private int loanId;
 
-    @Column(nullable = false)
-    private LocalDate LoanDate;
+    @Setter
+    @Column(nullable = false, updatable = false)
+    private LocalDate loanDate;
 
+    @Setter
+    @Column(nullable = false, updatable = false)
+    private LocalDate dueDate;
+
+    @Setter
     @Column(nullable = false)
     private boolean returned;
 
-    @ManyToOne
-    @JoinColumn
+    @Setter
+    @ManyToOne(cascade = CascadeType.ALL)
+
     private AppUser borrower;
 
-    @ManyToOne
-    @JoinColumn
+    @Setter
+    @ManyToOne(cascade = CascadeType.ALL)
+
     private Book book;
 
     public BookLoan(Book book, AppUser appUser) {
         this.borrower = appUser;
         this.book = book;
-        this.LoanDate = LocalDate.now();
+        this.loanDate = LocalDate.now();
+        this.dueDate = LocalDate.now().plusDays(book.getMaxLoanDays());
         this.returned = false;
 
-
     }
+
+    public void returnBook() {
+        this.borrower = null;
+        this.book = null;
+    }
+
 }
+
