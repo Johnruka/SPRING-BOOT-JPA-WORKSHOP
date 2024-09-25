@@ -32,11 +32,18 @@ public class BookLoan {
 
     @ManyToOne
     @JoinColumn
-    private AppUser appUsers;
+    private AppUser borrower;
 
     @ManyToOne
     @JoinColumn
-    private Book books;
+    private Book book;
+
+    public BookLoan(Book book, AppUser appUser) {
+        this.borrower = appUser;
+        this.book = book;
+        this.LoanDate = LocalDate.now();
+        this.returned = false;
 
 
+    }
 }
