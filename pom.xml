@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>se.lexicon</groupId>
-    <artifactId>SPRING-BOOT-JPA-WORKSHOP-1</artifactId>
+    <artifactId>SPRING-BOOT-JPA-WORKSHOP</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SPRING-BOOT-JPA-WORKSHOP-1</name>
     <description>SPRING-BOOT-JPA-WORKSHOP-1</description>

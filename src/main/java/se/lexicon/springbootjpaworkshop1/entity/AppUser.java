@@ -30,10 +30,9 @@ public class AppUser {
     @Column(nullable = false, length = 25)
     private LocalDate regDate;
 
-
     @Setter
     @OneToOne
-    @JoinColumn(name = "details_id")
+    @JoinColumn
     private Details userdetails;
 
     public AppUser(String firstName, String lastName, String email, Details userdetails) {
