@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -31,14 +33,25 @@ public class AppUser {
     private LocalDate regDate;
 
     @Setter
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
     private Details userdetails;
+
+    @Setter
+    @OneToMany(mappedBy = "borrower")
+    private Set<BookLoan> loans = new HashSet<>();
 
     public AppUser(String firstName, String lastName, String email, Details userdetails) {
         this.username = username;
         this.password = password;
         this.regDate = regDate;
         this.userdetails = userdetails;
+    }
+
+    public void addLoan(BookLoan loan) {
+        if (loan == null) throw new IllegalArgumentException("Loan was null");
+        if (loans.contains(loan)) throw new IllegalArgumentException("Loan already exists.");
+        loans.add(loan);
+        loan.getBook().setAvailable(false);
     }
 }

@@ -41,5 +41,19 @@ public class Author {
 
 
     }
-}
 
+    public void addBook(Book book) {
+        if (book == null) throw new IllegalArgumentException("Book was null");
+        if (writtenBooks.contains(book)) throw new IllegalArgumentException("Book already exists.");
+        writtenBooks.add(book);
+        book.getAuthors().add(this);
+    }
+
+
+    public void removeBook(Book book) {
+        if (book == null) throw new IllegalArgumentException("Book was null");
+        if (!writtenBooks.contains(book)) throw new IllegalArgumentException("Book does not exist.");
+        writtenBooks.remove(book);
+        book.getAuthors().remove(this);
+    }
+}

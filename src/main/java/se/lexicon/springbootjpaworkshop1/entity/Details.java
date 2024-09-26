@@ -38,6 +38,15 @@ public class Details {
         this.name = name;
         this.birthDate = birthDate;
 
+        @OneToOne(mappedBy = "details")
+        AppUser appUser;
+
+        //Constructor
+        // Bypassing the birthDate field for now!
+    public Details(String name, String email) {
+            this.email = email;
+            this.name = name;
+
 
     }
 }

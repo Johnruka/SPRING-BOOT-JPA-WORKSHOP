@@ -59,6 +59,34 @@ public class Book {
 
 
     }
+
+    public void addAuthor(Author author){
+        if(author == null) throw new IllegalArgumentException("Author was null");
+        if(authors.contains(author)) throw new IllegalArgumentException("Author already exists.");
+        authors.add(author);
+    }
+
+    public void addBookLoan(BookLoan bookLoan){
+        if(bookLoan == null) throw new IllegalArgumentException("BookLoan was null");
+        if(bookLoans.contains(bookLoan)) throw new IllegalArgumentException("BookLoan already exists.");
+        if(!available) throw new IllegalArgumentException("Book is not available.");
+        bookLoans.add(bookLoan);
+    }
+
+
+    public void removeAuthor(Author author){
+        if(author == null) throw new IllegalArgumentException("Author was null");
+        if(!authors.contains(author)) throw new IllegalArgumentException("Author does not exist.");
+        authors.remove(author);
+        author.getWrittenBooks().remove(this);
+    }
+
+
+    public void removeBookLoan(BookLoan bookLoan){
+        if(bookLoan == null) throw new IllegalArgumentException("BookLoan was null");
+        if(!bookLoans.contains(bookLoan)) throw new IllegalArgumentException("BookLoan does not exist.");
+        bookLoans.remove(bookLoan);
+    }
 }
 
 

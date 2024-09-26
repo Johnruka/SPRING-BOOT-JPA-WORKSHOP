@@ -59,5 +59,10 @@ public class BookLoan {
         this.book = null;
     }
 
+    public void calculateDueDate(){
+        this.dueDate = this.loanDate.plusDays(book.getMaxLoanDays());
+    }
+
+
 }
 
