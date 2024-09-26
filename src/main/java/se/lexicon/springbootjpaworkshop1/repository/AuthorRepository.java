@@ -24,7 +24,7 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
     void updateAuthorName(int id, String firstName, String lastName);
 
 
-    //@Modifying
-    //@Query("delete from Author a where a.authorId = :id")
-    //void deleteById(int id);
+   // @Modifying
+    //@Query("delete from Author a where a.authorId = : authorId")
+    //void deleteById(int authorId);
 }
