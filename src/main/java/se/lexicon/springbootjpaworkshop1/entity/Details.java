@@ -33,10 +33,7 @@ public class Details {
     @Column(nullable = false)
     private LocalDate birthDate;
 
-    public Details(String email, String name) {
-        this.email = email;
-        this.name = name;
-        this.birthDate = birthDate;
+
 
         @OneToOne(mappedBy = "details")
         AppUser appUser;
@@ -48,5 +45,6 @@ public class Details {
             this.name = name;
 
 
+        }
     }
-}
+
