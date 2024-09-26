@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,18 +31,35 @@ public class Book {
     private String title;
 
     @Setter
+    private boolean available = true;
+
+    @Setter
     @Column(nullable = false)
     private int maxLoanDays;
 
-    public Book(String isbn, String title, int maxLoanDays) {
-        this.isbn = isbn;
+    @ManyToMany
+    @JoinTable(name = "books_authors",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    Set<Author> authors = new HashSet<>();
+
+    @Setter
+    @OneToMany(mappedBy = "book")
+    private Set<BookLoan> bookLoans = new HashSet<>();
+
+
+    public Book(String title, int maxLoanDays) {
         this.title = title;
         this.maxLoanDays = maxLoanDays;
+        this.isbn = generateIsbn();
     }
 
+    private String generateIsbn() {
+        return java.util.UUID.randomUUID().toString();
+
 
     }
-
+}
 
 
 

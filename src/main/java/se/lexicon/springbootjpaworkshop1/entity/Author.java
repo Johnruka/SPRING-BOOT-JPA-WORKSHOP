@@ -27,13 +27,19 @@ public class Author {
     private String firstName;
 
     @Column(nullable = false, length = 100)
-    private  String lastName;
+    private String lastName;
 
-    @ManyToMany
-    @JoinTable(
-            name = "authors_books",
-            joinColumns = @JoinColumn(name = "auther_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
-    )
-    private Set<Author> Authors = new HashSet<>();
+    private String name;
+
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
+    Set<Book> writtenBooks = new HashSet<>();
+
+
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+
+    }
 }
+
