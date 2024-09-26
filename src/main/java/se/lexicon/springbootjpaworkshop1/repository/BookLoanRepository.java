@@ -14,9 +14,11 @@ public interface BookLoanRepository extends CrudRepository<BookLoan, Integer> {
 
     List<BookLoan> findByBorrower_Id(int borrowerId);
 
+    // List<BookLoan> findById(int bookId);
 
-    List<BookLoan> findByReturnedFalse();
+    //List<BookLoan> findByReturnedFalse();
 
+    List<BookLoan> findByDueDateBeforeAndReturnedFalse(LocalDate dueDate);
 
     List<BookLoan> findByLoanDateBetween(LocalDate startDate, LocalDate endDate);
 
