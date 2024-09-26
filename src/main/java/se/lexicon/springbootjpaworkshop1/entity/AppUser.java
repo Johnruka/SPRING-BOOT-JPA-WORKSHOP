@@ -13,8 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@ToString //(exclude = "regDate")
-@Entity //(username = "_AppUser")
+@ToString
+@Entity
 public class AppUser {
 
     @Id
@@ -48,10 +48,6 @@ public class AppUser {
         this.userdetails = userdetails;
     }
 
-    public void addLoan(BookLoan loan) {
-        if (loan == null) throw new IllegalArgumentException("Loan was null");
-        if (loans.contains(loan)) throw new IllegalArgumentException("Loan already exists.");
-        loans.add(loan);
-        loan.getBook().setAvailable(false);
+
     }
-}
+

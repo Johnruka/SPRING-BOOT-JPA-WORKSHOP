@@ -2,10 +2,7 @@ package se.lexicon.springbootjpaworkshop1.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +11,8 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 
 @Entity
 public class Author {
@@ -29,7 +28,6 @@ public class Author {
     @Column(nullable = false, length = 100)
     private String lastName;
 
-    private String name;
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
     Set<Book> writtenBooks = new HashSet<>();
@@ -42,18 +40,8 @@ public class Author {
 
     }
 
-    public void addBook(Book book) {
-        if (book == null) throw new IllegalArgumentException("Book was null");
-        if (writtenBooks.contains(book)) throw new IllegalArgumentException("Book already exists.");
-        writtenBooks.add(book);
-        book.getAuthors().add(this);
-    }
 
-
-    public void removeBook(Book book) {
-        if (book == null) throw new IllegalArgumentException("Book was null");
-        if (!writtenBooks.contains(book)) throw new IllegalArgumentException("Book does not exist.");
-        writtenBooks.remove(book);
-        book.getAuthors().remove(this);
-    }
 }
+
+
+
