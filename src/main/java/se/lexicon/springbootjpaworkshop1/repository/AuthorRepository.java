@@ -1,8 +1,10 @@
 package se.lexicon.springbootjpaworkshop1.repository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import se.lexicon.springbootjpaworkshop1.entity.Author;
 
 import java.util.List;
@@ -24,7 +26,8 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
     void updateAuthorName(int id, String firstName, String lastName);
 
 
-   // @Modifying
-    //@Query("delete from Author a where a.authorId = : authorId")
-    //void deleteById(int authorId);
+    //@Modifying
+   // @Transactional
+   // @Query("DELETE FROM Author a WHERE a.authorId = :authorId")
+   // void deleteAuthorById(@Param("authorId") int authorId);
 }
