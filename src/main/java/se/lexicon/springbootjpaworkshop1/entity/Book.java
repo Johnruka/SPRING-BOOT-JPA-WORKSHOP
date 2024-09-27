@@ -8,33 +8,25 @@ import java.util.Set;
 
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+@AllArgsConstructor
+@ToString (exclude = {"authors", "bookLoans"})
+@EqualsAndHashCode(exclude = {"authors", "bookLoans"})
 
 @Entity
-
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int booId;
-
-    @Setter
-    @Column(nullable = false)
+    private int id;
     private String isbn;
-
     @Setter
-    @Column(unique = true, nullable = false)
     private String title;
+    @Setter
+    private int maxLoanDays;
 
     @Setter
     private boolean available = true;
-
-    @Setter
-    @Column(nullable = false)
-    private int maxLoanDays;
 
     @ManyToMany
     @JoinTable(name = "books_authors",
@@ -52,17 +44,7 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
         this.isbn = generateIsbn();
     }
-
-    private String generateIsbn() {
-        return java.util.UUID.randomUUID().toString();
-
-
+        private String generateIsbn () {
+            return java.util.UUID.randomUUID().toString();
+        }
     }
-
-
-}
-
-
-
-
-
