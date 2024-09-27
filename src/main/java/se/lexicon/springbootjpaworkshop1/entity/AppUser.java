@@ -5,7 +5,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -40,6 +42,19 @@ public class AppUser {
     @Setter
     @OneToMany(mappedBy = "borrower")
     private Set<BookLoan> loans = new HashSet<>();
+
+    @OneToMany(mappedBy = "borrower")
+    private List<BookLoan> bookLoans = new ArrayList<>();
+
+    public void addBookLoan(BookLoan bookLoan) {
+        bookLoans.add(bookLoan);
+        bookLoan.setBorrower(this);
+    }
+
+    public void removeBookLoan(BookLoan bookLoan) {
+        bookLoans.remove(bookLoan);
+        bookLoan.setBorrower(null);
+    }
 
     public AppUser(String firstName, String lastName, String email, Details userdetails) {
         this.username = username;

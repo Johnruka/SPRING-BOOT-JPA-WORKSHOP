@@ -35,22 +35,19 @@ public class BookLoan {
     @Column(nullable = false)
     private boolean returned;
 
+    @ManyToOne
     @Setter
-    @ManyToOne(cascade = CascadeType.ALL)
-
     private AppUser borrower;
 
+    @ManyToOne
     @Setter
-    @ManyToOne(cascade = CascadeType.ALL)
-
     private Book book;
 
-    public BookLoan(Book book, AppUser appUser) {
-        this.borrower = appUser;
-        this.book = book;
+
+    public BookLoan(LocalDate loanDate, AppUser borrower, Book book) {
         this.loanDate = LocalDate.now();
-        this.dueDate = LocalDate.now().plusDays(book.getMaxLoanDays());
-        this.returned = false;
+        this.borrower = borrower;
+        this.book = book;
 
     }
 

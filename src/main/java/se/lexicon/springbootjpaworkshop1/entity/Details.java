@@ -34,13 +34,10 @@ public class Details {
 
 
 
-        @OneToOne(mappedBy = "details")
-        AppUser appUser;
-
-
-    public Details(String name, String email) {
-            this.email = email;
-            this.name = name;
+    public Details(String email, LocalDate birtDate, String name) {
+        this.email = email;
+        this.birthDate = birtDate;
+        this.name = name;
 
 
         }

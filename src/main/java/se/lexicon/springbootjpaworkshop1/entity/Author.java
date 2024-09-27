@@ -29,8 +29,23 @@ public class Author {
     private String lastName;
 
 
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
-    Set<Book> writtenBooks = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> writtenBooks;
+
+    public void addBook(Book book) {
+        writtenBooks.add(book);
+        book.getAuthors().add(this);
+    }
+
+    public void removeBook(Book book) {
+        writtenBooks.remove(book);
+        book.getAuthors().remove(this);
+    }
 
 
     public Author(String firstName, String lastName) {

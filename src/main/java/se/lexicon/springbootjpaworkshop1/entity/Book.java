@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -18,7 +19,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int booId;
+    private int id;
     private String isbn;
     @Setter
     private String title;
@@ -28,23 +29,18 @@ public class Book {
     @Setter
     private boolean available = true;
 
-    @ManyToMany
-    @JoinTable(name = "books_authors",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
-    Set<Author> authors = new HashSet<>();
-
-    @Setter
     @OneToMany(mappedBy = "book")
+    @Setter
     private Set<BookLoan> bookLoans = new HashSet<>();
 
+    @ManyToMany(mappedBy = "writtenBooks")
+    private List<Author> authors;
 
-    public Book(String title, int maxLoanDays) {
-        this.title = title;
-        this.maxLoanDays = maxLoanDays;
-        this.isbn = generateIsbn();
+    public void lendBook() {
+        this.available = false;
     }
-        private String generateIsbn () {
-            return java.util.UUID.randomUUID().toString();
+
+    public void returnBook() {
+        this.available = true;
         }
     }
