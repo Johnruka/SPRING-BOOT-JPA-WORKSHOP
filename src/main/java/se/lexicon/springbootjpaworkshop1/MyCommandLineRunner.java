@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 import se.lexicon.springbootjpaworkshop1.repository.AppUserRepository;
 import se.lexicon.springbootjpaworkshop1.repository.detailsRepository;
 
-;
 
-public class MyCommandLineRunner {
+
+
 
     @Component
-    public class myCommandLineRunner implements CommandLineRunner {
+    public class MyCommandLineRunner implements CommandLineRunner {
 
         @Autowired
         AppUserRepository appUserRepository;
@@ -25,5 +25,5 @@ public class MyCommandLineRunner {
 
         }
     }
-}
+
 
